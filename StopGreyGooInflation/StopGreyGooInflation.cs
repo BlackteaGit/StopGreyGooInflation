@@ -47,7 +47,16 @@ namespace StopGreyGooInflation
 									{
 										cargobay.storage.placeInFirstSlot(new InventoryItem(InventoryItemType.grey_goo));
 									}
+									if (cargobay.storage.countItemByType(InventoryItemType.grey_goo) == 0)
+									{
+										var goo = new InventoryItem(InventoryItemType.grey_goo)
+										{
+											stackSize = (uint)RANDOM.Next(1, 20)
+										};
+										cargobay.storage.placeInFirstSlot(goo);
+									}
 								}
+								
 								__instance.setGooUpdated(true);
 							}
 						}
@@ -109,7 +118,16 @@ namespace StopGreyGooInflation
 											{
 												cargobaystorage.placeInFirstSlot(new InventoryItem(InventoryItemType.grey_goo));
 											}
+											if (cargobaystorage.countItemByType(InventoryItemType.grey_goo) == 0)
+											{
+												var goo = new InventoryItem(InventoryItemType.grey_goo)
+												{
+													stackSize = (uint)RANDOM.Next(1, 20)
+												};
+												cargobaystorage.placeInFirstSlot(goo);
+											}
 										}
+										
 										ship.setGooUpdated(true);
 									}
 								}
@@ -167,8 +185,16 @@ namespace StopGreyGooInflation
 								{
 									SCREEN_MANAGER.widgetChat.AddMessage("Grey goo storage on a nearby ship has been damaged, some grey goo has been destroyed.", MessageTarget.Ship);
 								}
-
+								if (__instance.storage.countItemByType(InventoryItemType.grey_goo) == 0)
+								{
+									var goo = new InventoryItem(InventoryItemType.grey_goo)
+									{
+										stackSize = (uint)RANDOM.Next(1, 20)
+									};
+									__instance.storage.placeInFirstSlot(goo);
+								}
 							}
+
 						}
 						else
 						{
